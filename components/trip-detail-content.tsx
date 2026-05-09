@@ -28,7 +28,6 @@ import {
   MessageCircle,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { BookingPopup } from "@/components/booking-popup"
 
 const itinerary = [
   {
@@ -211,7 +210,6 @@ const faqs = [
 
 export function TripDetailContent() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [isBookingOpen, setIsBookingOpen] = useState(false)
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % hotelImages.length)
@@ -222,19 +220,12 @@ export function TripDetailContent() {
   }
 
   const handleBookNow = () => {
-    setIsBookingOpen(true)
+    const message = `Hello! I would like to book the "Turkey 7 Days / 6 Nights" tour.\n\nDates: 1 Jul - 7 Jul\nPrice: $125 USD per person/night (6,600 EGP)\nHotel: Hampton by Hilton (3-Star)\n\nPlease confirm availability and booking details.`
+    window.open(`https://wa.me/201066578901?text=${encodeURIComponent(message)}`, '_blank')
   }
 
   return (
     <div>
-      <BookingPopup
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-        tripTitle="Turkey 7 Days / 6 Nights"
-        price={125}
-        currency="USD"
-      />
-
       {/* Hero Banner */}
       <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
         <Image
