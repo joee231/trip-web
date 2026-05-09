@@ -28,6 +28,7 @@ import {
   MessageCircle,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { BookingPopup } from "@/components/booking-popup"
 
 const itinerary = [
   {
@@ -210,6 +211,7 @@ const faqs = [
 
 export function TripDetailContent() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isBookingOpen, setIsBookingOpen] = useState(false)
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % hotelImages.length)
@@ -220,23 +222,19 @@ export function TripDetailContent() {
   }
 
   const handleBookNow = () => {
-    const confirmed = window.confirm(
-      `Confirm Reservation\n\n` +
-      `Trip: Turkey 7 Days / 6 Nights\n` +
-      `Dates: 1 Jul - 7 Jul\n` +
-      `Price: $125 USD per person/night (6,600 EGP)\n` +
-      `Hotel: Hampton by Hilton (3-Star)\n\n` +
-      `Click OK to proceed to WhatsApp and complete your booking.`
-    )
-    
-    if (confirmed) {
-      const message = `Hello! I would like to book the Turkey 7 Days / 6 Nights trip.\n\nDates: 1 Jul - 7 Jul\nPrice: $125 USD per person/night\n\nPlease confirm availability and booking details.`
-      window.open(`https://wa.me/201066578901?text=${encodeURIComponent(message)}`, '_blank')
-    }
+    setIsBookingOpen(true)
   }
 
   return (
     <div>
+      <BookingPopup
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        tripTitle="Turkey 7 Days / 6 Nights"
+        price={125}
+        currency="USD"
+      />
+
       {/* Hero Banner */}
       <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
         <Image
