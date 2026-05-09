@@ -30,9 +30,8 @@ export function HeroSection() {
             src={img}
             alt="Travel destination"
             fill
-            className={`object-cover transition-opacity duration-1000 ${
-              index === currentImage ? "opacity-100" : "opacity-0"
-            }`}
+            className={`object-cover transition-opacity duration-1000 ${index === currentImage ? "opacity-100" : "opacity-0"
+              }`}
             priority={index === 0}
           />
         ))}
@@ -47,16 +46,16 @@ export function HeroSection() {
             <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
             Born to Roam
           </div>
-          
+
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
             Discover the World<br />
             <span className="text-secondary">One Journey</span> at a Time
           </h1>
-          
+
           <p className="text-lg md:text-xl opacity-90 mb-8 leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
             At Nomara, we believe travel is more than just visiting places — we create journeys that bring freedom, exploration, and excitement to every traveler.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
             <Button
               asChild
