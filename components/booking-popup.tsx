@@ -21,6 +21,7 @@ export function BookingPopup({ isOpen, onClose, tripTitle, price, currency }: Bo
     fullName: "",
     email: "",
     phone: "",
+    visaStatus: "need-assistance",
     specialRequests: "",
   })
 
@@ -43,6 +44,7 @@ export function BookingPopup({ isOpen, onClose, tripTitle, price, currency }: Bo
       fullName: "",
       email: "",
       phone: "",
+      visaStatus: "need-assistance",
       specialRequests: "",
     })
     onClose()
@@ -119,6 +121,24 @@ export function BookingPopup({ isOpen, onClose, tripTitle, price, currency }: Bo
                     required
                     className="text-sm"
                   />
+                </div>
+
+                <div>
+                  <label htmlFor="visaStatus" className="block text-sm font-medium text-foreground mb-1">
+                    Visa Status *
+                  </label>
+                  <select
+                    id="visaStatus"
+                    name="visaStatus"
+                    value={formData.visaStatus}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-3 py-2 border border-input rounded-md text-sm bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-secondary"
+                  >
+                    <option value="need-assistance">I need visa assistance</option>
+                    <option value="have-visa">I already have a valid visa</option>
+                    <option value="unsure">I&apos;m not sure</option>
+                  </select>
                 </div>
 
                 <div>

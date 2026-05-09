@@ -28,6 +28,7 @@ import {
   MessageCircle,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { BookingPopup } from "@/components/booking-popup"
 
 const itinerary = [
   {
@@ -210,6 +211,7 @@ const faqs = [
 
 export function TripDetailContent() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isBookingOpen, setIsBookingOpen] = useState(false)
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % hotelImages.length)
@@ -220,12 +222,19 @@ export function TripDetailContent() {
   }
 
   const handleBookNow = () => {
-    const message = `Hello! I would like to book the "Turkey 7 Days / 6 Nights" tour.\n\nDates: 1 Jul - 7 Jul\nPrice: $125 USD per person/night (6,600 EGP)\nHotel: Hampton by Hilton (3-Star)\n\nPlease confirm availability and booking details.`
-    window.open(`https://wa.me/201066578901?text=${encodeURIComponent(message)}`, '_blank')
+    setIsBookingOpen(true)
   }
 
   return (
     <div>
+      <BookingPopup
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        tripTitle="Turkey 7 Days / 6 Nights"
+        price={125}
+        currency="USD"
+      />
+
       {/* Hero Banner */}
       <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
         <Image
@@ -515,11 +524,11 @@ export function TripDetailContent() {
                   </div>
 
                   <div className="space-y-3">
-                    <Button className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground h-12 text-lg">
-                      <a href="https://wa.me/201066578901?text=Hi!%20I%27m%20interested%20in%20the%20Turkey%207%20Days%20trip" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                        <MessageCircle className="h-5 w-5" />
-                        Book via WhatsApp
-                      </a>
+                    <Button 
+                      onClick={handleBookNow}
+                      className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground h-12 text-lg"
+                    >
+                      Book Now
                     </Button>
                     <Button variant="outline" className="w-full h-12" asChild>
                       <a href="tel:01066578901" className="flex items-center gap-2">

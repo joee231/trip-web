@@ -204,25 +204,7 @@ export function ContactContent() {
                 </Card>
               ))}
 
-              {/* WhatsApp Card */}
-              <Card className="border-none shadow-md bg-[#25D366] text-white">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
-                      <MessageCircle className="h-6 w-6" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-semibold mb-1">Chat on WhatsApp</h3>
-                      <p className="text-sm opacity-90">Quick responses, 24/7</p>
-                    </div>
-                  </div>
-                  <Button asChild className="w-full mt-4 bg-white text-[#25D366] hover:bg-white/90">
-                    <a href="https://wa.me/201066578901" target="_blank" rel="noopener noreferrer">
-                      Start Chat
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
+
             </div>
           </div>
         </div>

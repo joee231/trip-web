@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, MapPin, Clock, Users, Star, ChevronRight, Plane } from "lucide-react"
+import { BookingPopup } from "@/components/booking-popup"
 
 const tripHighlights = [
   "Sapanca Lake & Maşukiye Tour",
@@ -36,13 +37,21 @@ const hotelImages = [
 ]
 
 export function FeaturedTripSection() {
+  const [isBookingOpen, setIsBookingOpen] = useState(false)
+
   const handleBookNow = () => {
-    const message = `Hello! I would like to book the "Turkey 7 Days / 6 Nights" tour.\n\nPrice: $125 USD per person/night (6,600 EGP)\n\nPlease confirm availability and booking details.`
-    window.open(`https://wa.me/201066578901?text=${encodeURIComponent(message)}`, '_blank')
+    setIsBookingOpen(true)
   }
 
   return (
     <section className="py-20 bg-muted/30">
+      <BookingPopup
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        tripTitle="Turkey 7 Days / 6 Nights"
+        price={125}
+        currency="USD"
+      />
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">

@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { WhatsAppButton } from "@/components/whatsapp-button"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { HeroSection } from "@/components/sections/hero"
 import { FeaturedTripSection } from "@/components/sections/featured-trip"
@@ -22,7 +21,6 @@ export default function HomePage() {
       <CTASection />
       <NewsletterSection />
       <Footer />
-      <WhatsAppButton />
       <ScrollToTop />
     </main>
   )
