@@ -114,7 +114,7 @@ export function Navbar() {
         {/* Mobile Menu */}
         <div
           className={cn(
-            "lg:hidden absolute top-full left-0 right-0 bg-card shadow-xl transition-all duration-300 overflow-hidden",
+            "lg:hidden w-full absolute top-full left-0 right-0 bg-card shadow-xl transition-all duration-300 overflow-hidden z-40",
             isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
           )}
         >
