@@ -89,7 +89,7 @@ export function AboutContent() {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-block text-secondary font-semibold mb-3">Our Story</span>
+              <span className="inline-block text-blue-600 font-semibold mb-3">Our Story</span>
               <h2 className="text-3xl md:text-4xl font-bold font-serif text-foreground mb-6">
                 Creating Journeys That Matter
               </h2>

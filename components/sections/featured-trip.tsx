@@ -1,10 +1,12 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, MapPin, Clock, Users, Star, ChevronRight, Plane } from "lucide-react"
+import { BookingPopup } from "@/components/booking-popup"
 
 const tripHighlights = [
   "Sapanca Lake & Maşukiye Tour",
@@ -35,8 +37,21 @@ const hotelImages = [
 ]
 
 export function FeaturedTripSection() {
+  const [isBookingOpen, setIsBookingOpen] = useState(false)
+
+  const handleBookNow = () => {
+    setIsBookingOpen(true)
+  }
+
   return (
     <section className="py-20 bg-muted/30">
+      <BookingPopup
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        tripTitle="Turkey 7 Days / 6 Nights"
+        price={125}
+        currency="USD"
+      />
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -163,11 +178,13 @@ export function FeaturedTripSection() {
                 </div>
                 <p className="text-sm text-secondary font-medium mt-1">or 6,600 EGP</p>
               </div>
-              <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
-                <Link href="/trips/turkey-7-days">
-                  View Details
-                  <ChevronRight className="ml-2 h-5 w-5" />
-                </Link>
+              <Button
+                size="lg"
+                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+                onClick={handleBookNow}
+              >
+                Book Now
+                <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
           </div>

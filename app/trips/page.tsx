@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { WhatsAppButton } from "@/components/whatsapp-button"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { TripsContent } from "@/components/trips-content"
 
@@ -15,7 +14,6 @@ export default function TripsPage() {
       <Navbar />
       <TripsContent />
       <Footer />
-      <WhatsAppButton />
       <ScrollToTop />
     </main>
   )

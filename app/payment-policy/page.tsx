@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { WhatsAppButton } from "@/components/whatsapp-button"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { PaymentPolicyContent } from "@/components/payment-policy-content"
 
@@ -15,7 +14,6 @@ export default function PaymentPolicyPage() {
       <Navbar />
       <PaymentPolicyContent />
       <Footer />
-      <WhatsAppButton />
       <ScrollToTop />
     </main>
   )

@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { WhatsAppButton } from "@/components/whatsapp-button"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { GalleryContent } from "@/components/gallery-content"
 
@@ -15,7 +14,6 @@ export default function GalleryPage() {
       <Navbar />
       <GalleryContent />
       <Footer />
-      <WhatsAppButton />
       <ScrollToTop />
     </main>
   )

@@ -1,8 +1,10 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { BookingPopup } from "@/components/booking-popup"
 import {
   Accordion,
   AccordionContent,
@@ -62,25 +64,22 @@ const faqs = [
 ]
 
 export function VisaContent() {
+  const [isBookingOpen, setIsBookingOpen] = useState(false)
+
   const handleApplyNow = () => {
-    const confirmed = window.confirm(
-      `Apply for Turkey E-Visa\n\n` +
-      `E-Visa Fee: 2,500 EGP\n\n` +
-      `Requirements:\n` +
-      `- Passport valid for at least 6 months\n` +
-      `- Age 15 or younger, OR 45 or older\n` +
-      `- OR valid Schengen/USA/UK visa\n\n` +
-      `Click OK to proceed to WhatsApp.`
-    )
-    
-    if (confirmed) {
-      const message = `Hello! I would like to apply for a Turkey e-Visa.\n\nPlease let me know the requirements and next steps.`
-      window.open(`https://wa.me/201066578901?text=${encodeURIComponent(message)}`, '_blank')
-    }
+    setIsBookingOpen(true)
   }
 
   return (
     <div>
+      <BookingPopup
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        tripTitle="Turkey E-Visa Application"
+        price={2500}
+        currency="EGP"
+      />
+
       {/* Hero */}
       <section className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4 text-center">
@@ -341,12 +340,6 @@ export function VisaContent() {
                 >
                   Apply Now
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-                  <a href="https://wa.me/201066578901" target="_blank" rel="noopener noreferrer">
-                    <MessageCircle className="mr-2 h-5 w-5" />
-                    WhatsApp Us
-                  </a>
                 </Button>
               </div>
             </CardContent>
