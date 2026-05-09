@@ -72,7 +72,7 @@ export function HeroSection() {
               asChild
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-primary text-lg px-8"
+              className="border-[#0F4C5C] text-[#0F4C5C] hover:bg-[#0F4C5C] hover:text-white text-lg px-8"
             >
               <Link href="/about">
                 <Play className="mr-2 h-5 w-5" />
