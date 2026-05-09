@@ -1,10 +1,12 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Calendar, Clock, MapPin, Star, Users, ChevronRight } from "lucide-react"
+import { BookingPopup } from "@/components/booking-popup"
 
 const trips = [
   {
@@ -66,44 +68,28 @@ const dayTrips = [
   },
 ]
 
-const upcomingDestinations = [
-  {
-    name: "Dubai",
-    country: "UAE",
-    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
-    status: "Coming Soon",
-  },
-  {
-    name: "Maldives",
-    country: "Maldives",
-    image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800",
-    status: "Coming Soon",
-  },
-  {
-    name: "Paris",
-    country: "France",
-    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800",
-    status: "Coming Soon",
-  },
-]
+
 
 export function TripsContent() {
+  const [isBookingOpen, setIsBookingOpen] = useState(false)
+  const [selectedTrip, setSelectedTrip] = useState<{ title: string; price: number; currency: string } | null>(null)
+
   const handleBookNow = (tripTitle: string, price: number, currency: string) => {
-    const confirmed = window.confirm(
-      `Confirm Reservation\n\n` +
-      `Trip: ${tripTitle}\n` +
-      `Price: ${price.toLocaleString()} ${currency} per person\n\n` +
-      `Click OK to proceed to WhatsApp and complete your booking.`
-    )
-    
-    if (confirmed) {
-      const message = `Hello! I would like to book the "${tripTitle}" tour.\n\nPrice: ${price.toLocaleString()} ${currency}\n\nPlease confirm availability and booking details.`
-      window.open(`https://wa.me/201066578901?text=${encodeURIComponent(message)}`, '_blank')
-    }
+    setSelectedTrip({ title: tripTitle, price, currency })
+    setIsBookingOpen(true)
   }
 
   return (
     <div>
+      {selectedTrip && (
+        <BookingPopup
+          isOpen={isBookingOpen}
+          onClose={() => setIsBookingOpen(false)}
+          tripTitle={selectedTrip.title}
+          price={selectedTrip.price}
+          currency={selectedTrip.currency}
+        />
+      )}
       {/* Hero */}
       <section className="bg-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4 text-center">
@@ -267,45 +253,6 @@ export function TripsContent() {
                     </Button>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Upcoming Destinations */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="inline-block text-secondary font-semibold mb-3">Coming Soon</span>
-            <h2 className="text-3xl font-bold font-serif text-foreground mb-4">
-              Upcoming Destinations
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              We&apos;re constantly expanding our travel offerings. Stay tuned for these exciting new destinations!
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {upcomingDestinations.map((dest, index) => (
-              <Card key={index} className="group border-none shadow-md overflow-hidden">
-                <div className="relative h-[200px] overflow-hidden">
-                  <Image
-                    src={dest.image}
-                    alt={dest.name}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 grayscale group-hover:grayscale-0"
-                  />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <h3 className="text-2xl font-bold mb-1">{dest.name}</h3>
-                      <p className="text-sm opacity-80">{dest.country}</p>
-                      <span className="inline-block mt-3 px-3 py-1 bg-secondary/80 rounded-full text-xs font-semibold">
-                        {dest.status}
-                      </span>
-                    </div>
-                  </div>
-                </div>
               </Card>
             ))}
           </div>
